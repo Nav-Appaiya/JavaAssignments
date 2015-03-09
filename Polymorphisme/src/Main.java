@@ -24,7 +24,7 @@ public class Main extends Vorm{
     }
 
     public void opd3() {
-        Tetraeder tetraeder = new Tetraeder(4);
+        Tetraeder tetraeder = new Tetraeder(5);
         tetraeder.print();
     }
 

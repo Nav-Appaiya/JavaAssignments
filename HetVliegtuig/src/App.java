@@ -13,7 +13,10 @@ public class App {
      * @param args
      */
     public static void main(String args[]) {
+        // Maak nieuwe Recorder aan
         Recorder rec = new Recorder();
+
+        // En simuleer 1 miljoen vluchten
         rec.simulate(1000000);
     }
 

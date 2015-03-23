@@ -1,7 +1,7 @@
 /**
  * Created by Nav on 22-3-2015.
  */
-
+// The Exceptions from Exceptions Package
 import Exceptions.CrashException;
 import Exceptions.EngineException;
 import Exceptions.FlapException;
@@ -9,7 +9,10 @@ import Exceptions.PilotException;
 
 public class Airplane {
 
+    // Create a Parts Array
     static Part[] parts = new Part[9];
+
+    // Boolean to define failed or not
     static boolean[] fails = new boolean[parts.length];
 
     Airplane(){
@@ -34,9 +37,9 @@ public class Airplane {
 
     static void flight(int n) throws CrashException
     {
-        int numEngine = 0;
-        int numFlap = 0;
-        int numPilot = 0;
+        int engineNummer = 0;
+        int flapNummer = 0;
+        int pilotNummer = 0;
 
         for (int i=0; i<parts.length; i++)
         {
@@ -46,36 +49,36 @@ public class Airplane {
             }
             catch (EngineException e)
             {
-                numEngine++;
+                engineNummer++;
                 fails[i] = true;
             }
             catch (FlapException e)
             {
-                numFlap++;
+                flapNummer++;
                 fails[i] = true;
             }
             catch (PilotException e)
             {
-                numPilot++;
+                pilotNummer++;
                 fails[i] = true;
             }
             catch (Exception e){} // dummy
         }
 
-        Recorder.tEngine += numEngine;
-        Recorder.tFlap += numFlap;
-        Recorder.tPilot += numPilot;
+        Recorder.engineFailure += engineNummer;
+        Recorder.flapFailure += flapNummer;
+        Recorder.pilotFailure += pilotNummer;
 
         // chance for fEngine is really small (0.001^3)
         // check if both inner engines failed
-        boolean fEngine = (numEngine >= 3 && fails[1] && fails[2]);
+        boolean fEngine = (engineNummer >= 3 && fails[1] && fails[2]);
 
-        if (fEngine || numFlap == 2 || numPilot == 3)
+        if (fEngine || flapNummer == 2 || pilotNummer == 3)
         {
             String s = "\n\tFlight: "+n
-                    +(numEngine>0 ? "\n\tEngines: "+numEngine : "")
-                    +(numFlap>0 ? "\n\tFlaps: "+numFlap : "")
-                    +(numPilot>0 ? "\n\tPilots: "+numPilot : "");
+                    +(engineNummer>0 ? "\n\tEngines: "+engineNummer : "")
+                    +(flapNummer>0 ? "\n\tFlaps: "+flapNummer : "")
+                    +(pilotNummer>0 ? "\n\tPilots: "+pilotNummer : "");
 
             throw new CrashException(s);
         }

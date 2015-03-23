@@ -5,34 +5,35 @@ import Exceptions.CrashException;
  */
 public class Recorder {
 
-    static int tEngine = 0;
-    static int tFlap = 0;
-    static int tPilot = 0;
-    int tCrash = 0;
+    // Keeps count of engine failures
+    static int engineFailure = 0;
 
-    void simulate(int numFlights)
-    {
-        for (int i=1; i<=numFlights; i++)
-        {
+    // Keeps count of the flap failures
+    static int flapFailure = 0;
+
+    // Keeps count of the pilot failures
+    static int pilotFailure = 0;
+
+    // Keeps count of the crashes
+    static int crashes = 0;
+
+    void simulate(int flights) {
+        for (int i=1; i<=flights; i++) {
             Airplane a = new Airplane();
-
-            try
-            {
+            try {
                 a.flight(i);
-            }
-            catch (CrashException e)
-            {
-                tCrash++;
+            } catch (CrashException e) {
+                crashes++;
                 System.out.println(e);
-                //e.printStackTrace();
             }
         }
 
-        System.out.println("Gegevens voor " + numFlights + " Vluchten: ");
-        System.out.println("Gecrashte vluchten: " + tCrash);
-        System.out.println(String.format("\t%s (%.2f%%) engines malfunctioned", tEngine, (double) tEngine/(numFlights*4)*100));
-        System.out.println(String.format("\t%s (%.2f%%) flaps broke off", tFlap, (double) tFlap/(numFlights*2)*100));
-        System.out.println(String.format("\t%s (%.2f%%) pilots dozed off", tPilot, (double) tPilot/(numFlights*3)*100));
+        System.out.println("--------- Results for " + flights + " Flights");
+        System.out.println("Crashed: " + crashes);
+        System.out.println("Fails:");
+        System.out.println("Engine failure: " + (double) engineFailure/(flights*4)*100);
+        System.out.println("Flap failure: " + (double) flapFailure/(flights*4)*100);
+        System.out.println("Pilot failure: " + (double) pilotFailure/(flights*4)*100);
     }
 
 }

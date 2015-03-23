@@ -5,9 +5,11 @@ import Exceptions.PilotException;
  * F(piloot) = 0, 005
  */
 public class Pilot extends Part{
+
     void calculate() throws PilotException
     {
         if (Math.random() < .005)
             throw new PilotException();
     }
+
 }

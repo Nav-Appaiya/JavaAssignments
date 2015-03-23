@@ -3,7 +3,7 @@ package Exceptions;
 /**
  * Created by Nav on 22-3-2015.
  * Zorgen dat de exception de juiste klasse
- * extends.
+ * extend.
  */
 public class CrashException extends Exception{
 
